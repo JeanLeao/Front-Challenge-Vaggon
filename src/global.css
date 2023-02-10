@@ -38,6 +38,16 @@
   background-color: rgb(149, 151, 22) !important;
   border-color: rgb(149, 151, 22) !important;
 }
+input {
+  padding: 12px 20px;
+  border-radius: 4px;
+  background-color: var(--gray-900);
+  display: inline-block;
+  border: 1px solid #ccc;
+  color: var(--white);
+  width: 100%;
+  margin-bottom: 1rem;
+}
 
 html,
 body {

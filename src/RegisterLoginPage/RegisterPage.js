@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { InputNew } from '../Components/Input/InputComponent';
 import { ButtonNew } from '../Components/Button/ButtonComponent';
 import styles from './Register.module.css';
 import axios from 'axios';
@@ -35,7 +34,7 @@ export const RegisterPage = () => {
               onChange={(e) => {
                 setName(e.target.value);
               }}
-              placeholder="seu nome aqui"
+              placeholder="Seu nome"
             />
           </div>
         </div>
