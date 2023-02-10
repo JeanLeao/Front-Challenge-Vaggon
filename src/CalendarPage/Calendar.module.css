@@ -1,0 +1,42 @@
+.SideBar {
+  padding: 4vmin;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  max-width: 100%;
+}
+.fcToolbarTitle {
+  text-transform: capitalize;
+  color: #fff;
+}
+.fc {
+  color: #fff;
+}
+.buttonCalendar {
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 5px;
+  width: 200px;
+  margin: auto;
+}
+.buttonCalendar:hover {
+  cursor: pointer;
+}
+.floatDiv {
+  display: flex;
+  flex-direction: column;
+  color: #fff;
+  background-color: #3f3d3d;
+  padding: 20px;
+  border-radius: 10px;
+}
+.toolBarBottom{
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 10px;
+}
+.buttonUpdate{
+  margin-top: 10px;
+  background-color: var(--green-300);
+  margin-bottom: 10px;
+}
