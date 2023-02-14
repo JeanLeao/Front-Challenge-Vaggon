@@ -7,6 +7,14 @@
   align-items: center;
   justify-content: center;
 }
+.floatDivUpdate {
+  display: flex;
+  flex-direction: column;
+  color: #fff;
+  background-color: #3f3d3d;
+  padding: 20px;
+  border-radius: 10px;
+}
 
 .container {
   min-width: 460px;
@@ -40,4 +48,10 @@ h3{
   background-color: greenyellow;
   padding: 5px;
   width: 100px;
+}
+.titlefloatDiv{
+  text-align: center;
+}
+.buttonSelection{
+  margin-top: 10px;
 }

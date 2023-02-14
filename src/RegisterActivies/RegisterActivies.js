@@ -3,6 +3,7 @@ import styles from './RegisterActivies.module.css';
 import { ButtonNew } from '../Components/Button/ButtonComponent';
 import axios from 'axios';
 import MaskedInput from 'react-text-mask';
+import { axiosConfig } from '../CalendarPage/CalendarPage';
 export const RegisterActivies = () => {
 const [title, setTitle] = useState('');
 const [description, setDescription] = useState('');
@@ -13,7 +14,8 @@ const [timeEnd, setTimeEnd] = useState('');
 
 useEffect(() => {
   if (localStorage.getItem('token')) {
-    axios.get('http://localhost:3500/activities/'+localStorage.getItem('token')).then((data) => {
+    axios.get('http://localhost:3500/activities/'+localStorage.getItem('slug'),axiosConfig
+    ).then((data) => {
       console.log(data);
     }).catch((error) => {
       window.location.href = '/';
@@ -35,9 +37,9 @@ const data = {
     datefinish: newenddate,
     hourstart: timeStart,
     hourfinish: timeEnd,
-    user: localStorage.getItem('token')
+    user: localStorage.getItem('slug')
   };
-  axios.post('http://localhost:3500/activity', data).then((data) => {
+  axios.post('http://localhost:3500/activity',data,axiosConfig).then((data) => {
     alert(data.data.message);
     window.location.href = '/user';
   })

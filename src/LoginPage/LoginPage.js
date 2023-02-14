@@ -20,7 +20,7 @@ export function LoginPage() {
       axios.patch('http://localhost:3500/user', { username: email, password: pass }).then((data) => {
         alert('Usuário logado com sucesso\n user: ' + email + '\n senha: ' + pass);
         console.log(data)
-        localStorage.setItem('token', data.data.slug);
+        localStorage.setItem('token', data.data.tokenLogin);
         window.location.href = '/user';
       }).catch((error) => {
         alert('Usuario invalido');

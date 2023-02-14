@@ -4,13 +4,22 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import styles from './Calendar.module.css';
 import axios from 'axios';
 
+export const axiosConfig= {
+  headers: {
+      Authorization: "Bearer " + localStorage.getItem("token")
+  }
+}
+
 export const CalendarPage = () => {
   const [Clicked, setClicked] = useState(false);
   const [ClikedInfo, setClickedInfo] = useState('');
   const [events, setEvents] = useState([]);
   useEffect(() => {
+    console.log(localStorage.getItem('token'))
     if (localStorage.getItem('token')) {
-      axios.get('http://localhost:3500/activities/'+localStorage.getItem('token')).then(response => {
+    axios.post('http://localhost:3500/token',{token: localStorage.getItem('token')}).then((data) => {
+      localStorage.setItem('slug', data.data.slug)
+      axios.get('http://localhost:3500/activities/'+localStorage.getItem('slug'), axiosConfig).then(response => {
         const newData = response.data.map(element => ({
           id: element.id,
           status: element.status,
@@ -22,11 +31,15 @@ export const CalendarPage = () => {
         }));
         console.log(newData);
         setEvents(newData);
-      })
-      .catch(error => {
+        console.log(response)
+      }).catch(error => {
         localStorage.clear();
         window.location.href = '/';
-      })
+      })  
+    }).catch(error => {
+      localStorage.clear();
+      window.location.href = '/';
+    })  
   }
 }, []);
 

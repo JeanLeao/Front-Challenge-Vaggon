@@ -34,10 +34,15 @@
   background-color: var(--green-500) !important;
   border-color: var(--green-500) !important;
 }
-.fc-event-pendency {
+.fc-event-pendent {
   background-color: rgb(149, 151, 22) !important;
   border-color: rgb(149, 151, 22) !important;
 }
+.fc-event-cancelado {
+  background-color: rgb(151, 31, 22) !important;
+  border-color: rgb(151, 31, 22)   !important;
+}
+
 input {
   padding: 12px 20px;
   border-radius: 4px;
