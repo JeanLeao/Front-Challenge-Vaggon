@@ -6,6 +6,8 @@ import moment from "moment";
 import { DesktopDatePicker, LocalizationProvider, TimePicker } from "@mui/x-date-pickers";
 import axios from 'axios';
 import { axiosConfig } from '../CalendarPage/CalendarPage';
+
+
 export const RegisterActivies = () => {
 const [title, setTitle] = useState('');
 const [description, setDescription] = useState('');
@@ -26,19 +28,20 @@ useEffect(() => {
     window.location.href = '/';
   }
 }, []);
-
 function registerNewActivies(){
-  if ((title !== '')){
   var newDateStart = moment(dateStart).format("DD/MM/YYYY");
   var newDateEnd = moment(dateEnd).format("DD/MM/YYYY");
+  var newHourStart = moment(hourStart).format("HH:mm");
+  var newHourEnd = moment(hourEnd).format("HH:mm");
 
-
-
-
+  if ((title !== '')){
+  if (newDateStart  === 'Invalid date' || newDateEnd === 'Invalid date' || newHourStart === 'Invalid date' || newHourEnd === 'Invalid date'){
+    alert('Preencha todos os campos corretamente');
+  }else{
 var newstartdate = (newDateStart.split('/')[1]+ "/"+ newDateStart.split('/')[0]+"/" + newDateStart.split('/')[2]);
 var newenddate = (newDateEnd.split('/')[1]+ "/"+ newDateEnd.split('/')[0]+"/" + newDateEnd.split('/')[2]);
 
-const data = {
+const data1 = {
     name: title,
     description: description,
     datestarter: newstartdate,
@@ -47,14 +50,15 @@ const data = {
     hourfinish: moment(hourEnd).format("HH:mm"),
     user: localStorage.getItem('slug')
   };
-  axios.post('http://localhost:3500/activity',data,axiosConfig).then((data) => {
+  axios.post('http://localhost:3500/activity',data1 ,axiosConfig).then((data) => {
     alert(data.data.message);
     window.location.href = '/user';
   })
+}
 }else{
-  alert('Please enter a valid date');
+  alert('Please enter a valid title');
 }
-}
+};
 
   return (
     <ThemeProvider theme={theme}>
@@ -144,9 +148,7 @@ const data = {
 
           <Grid item md={6} xs={12}>
             <Button
-            onClick={() => {
-              registerNewActivies();
-            }}
+            onClick={() => {registerNewActivies()}}
             fullWidth={true}
               sx={{
                 "&:hover": {
@@ -165,4 +167,4 @@ const data = {
     </Grid>
   </ThemeProvider>
   );
-};
+}
