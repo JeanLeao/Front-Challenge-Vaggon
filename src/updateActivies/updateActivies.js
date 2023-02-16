@@ -4,6 +4,8 @@ import { ButtonNew } from '../Components/Button/ButtonComponent';
 import axios from 'axios';
 import { axiosConfig } from '../CalendarPage/CalendarPage';
 import Select from 'react-select';
+import { Box } from '@mui/system';
+import { TextField } from '@mui/material';
 export const UpdatesActivies = () => {
 const [title, setTitle] = useState('');
 const [description, setDescription] = useState('');
@@ -33,11 +35,11 @@ useEffect(() => {
 
 
   function registerNewActivies(){
-    const data = {
+    const data1 = {
       name: title,
       description: description,
     };
-   axios.patch('http://localhost:3500/activity/'+localStorage.getItem('id'), data, axiosConfig).then((data) => {
+   axios.patch('http://localhost:3500/activity/'+localStorage.getItem('id'), data1, axiosConfig).then((data) => {
      alert(data.data.message);
      window.location.href = '/user';
    })
@@ -83,11 +85,54 @@ function AlternateStatus(){
       <button className={styles.delbutton} onClick={() => {deleteEvent()}}>Deletar</button>
       <button className={styles.attbutton} onClick={()=>{alternativePendency()}} >Atualizar Status</button>
       </div>
-      <h3>Update Activies</h3>
-      <input placeholder="Your title" type="text" id='title' onChange={(e) => {setTitle(e.target.value)}} required />
+      <h3 style={{color: '#ffffff'}}>Update Activies</h3>
+      <Box gap={2} sx={{
+        display: 'flex',
+        flexDirection: 'column',
 
-      <textarea className={styles.textarea} onChange={(e) => {setDescription(e.target.value)}} placeholder="Type your Description Here...." required></textarea>
+      }}>
+      <TextField label='Titulo' 
+      InputLabelProps={{
+        style:{
+          color: '#ffffff'
+        }
+      }}
+      sx={{
+        input: {
+          color: '#ffffff',
+        },
+        
+      }} 
+      variant='outlined'
+      color='success'
+      id='title'
+      focused={title !== ""}
+      value={title}
+      type='text'
+      onChange={(e) => {setTitle(e.target.value)}}/>
+
+<TextField multiline label='Description'
+
+      InputProps={{
+        style:{
+          color: '#ffffff'
+        }
+      }}
+      InputLabelProps={{
+        style:{
+          color: '#ffffff'
+        }
+      }}
+        
+      variant='outlined'
+      color='success'
+      id='description'
+      focused={description !== ""}
+      value={description}
+      type='text'
+      onChange={(e) => {setDescription(e.target.value)}}/>
       <ButtonNew value='Submit' onClick={()=>{registerNewActivies()}} />
+      </Box>
     </div>
   </div>
   </>

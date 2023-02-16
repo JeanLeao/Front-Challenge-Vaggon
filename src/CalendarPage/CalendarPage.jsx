@@ -3,6 +3,9 @@ import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import styles from './Calendar.module.css';
 import axios from 'axios';
+import { theme } from '../theme';
+import { Button } from '@mui/material';
+import { Box, ThemeProvider } from '@mui/system';
 
 export const axiosConfig= {
   headers: {
@@ -85,8 +88,7 @@ export const CalendarPage = () => {
           </div>
         </div>
       ) : null}
-
-      <div style={{ display: 'flex', flexDirection: 'row' }}>
+      <div style={{ display: 'flex', flexDirection: 'row', marginTop: '30px' }}>
         <div  style={{ marginLeft: '30%' }}></div>
 
         <FullCalendar
@@ -125,22 +127,48 @@ export const CalendarPage = () => {
         <div style={{marginRight: '30%'}}></div>
       </div>
       <div className={styles.SideBar} /* LADO DOS BOTÕES*/>
-          <div className={styles.toolBarBottom}>
+      <ThemeProvider theme={theme}>
 
-            <button
-              onClick={() => {
-                window.location.href = '/user/register';
+          <Box
+          sx={
+            {
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              justifyContent: 'center',
+              width: '100%',
+              height: '100%',
+            }
+          }
+          gap={2}
+          >
+              <Button variant='outlined' 
+               sx={{
+                "&:hover": {
+                  backgroundColor: "#000000",
+                  color: "#ffffff",
+                },
               }}
-              className={styles.buttonCalendar}
-            >
-              Cadastrar Atividade
-            </button>
+              color="third"
+              onClick={() => {window.location.href = '/user/register'}}>
+                Cadastrar Atividade
+              </Button>
 
-            <button onClick={handlelogout} className={styles.buttonCalendar}>
-            Logout
-          </button>
 
-          </div>
+              <Button variant='outlined' 
+              sx={{
+                "&:hover": {
+                  backgroundColor: "#000000",
+                  color: "#ffffff",
+                },
+              }}
+              color="third"
+              onClick={handlelogout}>
+                Logout
+              </Button>
+
+              </Box>
+        </ThemeProvider>
         </div>
       
     </div>
