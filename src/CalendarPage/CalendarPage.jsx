@@ -4,8 +4,9 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import styles from './Calendar.module.css';
 import axios from 'axios';
 import { theme } from '../theme';
-import { Button } from '@mui/material';
+import { Button, Modal } from '@mui/material';
 import { Box, ThemeProvider } from '@mui/system';
+import { UpdatesActivies } from '../updateActivies/updateActivies';
 
 export const axiosConfig= {
   headers: {
@@ -54,8 +55,11 @@ export const CalendarPage = () => {
 
   const handleEventClick = (info) => {
     setClicked(!Clicked);
-    console.log(info);
     setClickedInfo(info);
+    console.log(info.event);
+    localStorage.setItem('title', info.event._def.extendedProps.idlayer);
+    localStorage.setItem('evento', info.event);
+
   };
   const handleEventRender = (info) => {
     info.el.style.cursor = 'pointer';
@@ -63,7 +67,7 @@ export const CalendarPage = () => {
   return (
     <div>
       {Clicked ? (
-        <div style={{ position: 'absolute', zIndex: '3', top: '30%', left: '40%' }}>
+        <Modal open sx={{width: '50%', margin: 'auto', marginTop: '20px'}}>
           <div className={styles.floatDiv}>
             <h1>{ClikedInfo.event.title}</h1>
             <p>{ClikedInfo.event.extendedProps.description}</p>
@@ -75,19 +79,20 @@ export const CalendarPage = () => {
             ) : null}
 
           <p>Status: {ClikedInfo.event._def.extendedProps.status}</p>
-            <button 
-            className={styles.buttonUpdate} 
-            onClick={()=>{
-            setClicked(!Clicked);
-            localStorage.setItem('title', ClikedInfo.event._def.extendedProps.idlayer);
-            window.location.href = '/user/update';
-            }}>Update</button>
-            
-            <button  onClick={()=>{setClicked(!Clicked)}}>Close</button>
-            
+
+          <Box gap={2} sx={{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center',}}>
+            <br/>
+            <UpdatesActivies title={ClikedInfo.event.title} description={ClikedInfo.event.extendedProps.description} />
+            <Button sx={{width: '100%' }} variant='outlined' color='error' onClick={() => {setClicked(!Clicked)}}>Close</Button>
+            </Box>            
+          
           </div>
-        </div>
+        </Modal>
       ) : null}
+
+
+
+
       <div style={{ display: 'flex', flexDirection: 'row', marginTop: '30px' }}>
         <div  style={{ marginLeft: '30%' }}></div>
 

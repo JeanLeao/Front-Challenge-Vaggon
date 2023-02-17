@@ -17,7 +17,7 @@
 }
 
 .container {
-  min-width: 460px;
+  width: 40vw;
   background-color: var(--gray-800);
   padding: 2rem;
   border-radius: 8px;
@@ -40,14 +40,12 @@ h3{
   background-color: rgb(218, 80, 80);
   padding: 5px;
   width: 100px;
-  margin-left: 50px;
 
-  margin-right: 100px;
 }
 .attbutton{
   background-color: greenyellow;
   padding: 5px;
-  width: 100px;
+  width: 100px; 
 }
 .titlefloatDiv{
   text-align: center;
