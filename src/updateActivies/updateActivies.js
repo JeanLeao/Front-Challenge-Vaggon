@@ -18,16 +18,20 @@ const options = [
   { value: 'cancelado', label: 'FECHADO' }
 ]
 useEffect(() => {
+console.log(localStorage.getItem('title'))
   if (localStorage.getItem('token')) {
     axios.get('http://localhost:3500/activities/'+localStorage.getItem('slug')+'/'+localStorage.getItem('title'),axiosConfig).then((data) => {
-      localStorage.setItem('id',data.data[0].id);
+      localStorage.setItem('id', data.data.id);
       
     console.log(data);
     }).catch((error) => {
+      console.log(error);
+      console.log('ta parando no 1')
       localStorage.clear();
       window.location.href = '/';
     })
   }else{
+    console.log('ta parando no 2')
     localStorage.clear();
     window.location.href = '/';
   }

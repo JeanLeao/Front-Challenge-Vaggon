@@ -24,11 +24,11 @@ export const CalendarPage = () => {
       localStorage.setItem('slug', data.data.slug)
       axios.get('http://localhost:3500/activities/'+localStorage.getItem('slug'), axiosConfig).then(response => {
         const newData = response.data.map(element => ({
-          id: element.id,
+          idlayer: element.id,
           status: element.status,
           title: element.name,
           description: element.description,
-          start: element.datestarter,
+          start: element.datestarter, 
           end: element.datefinish,
           className: 'fc-event-'+element.status
         }));
@@ -79,7 +79,7 @@ export const CalendarPage = () => {
             className={styles.buttonUpdate} 
             onClick={()=>{
             setClicked(!Clicked);
-            localStorage.setItem('title', ClikedInfo.event.title);
+            localStorage.setItem('title', ClikedInfo.event._def.extendedProps.idlayer);
             window.location.href = '/user/update';
             }}>Update</button>
             

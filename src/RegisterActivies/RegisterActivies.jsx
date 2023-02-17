@@ -9,6 +9,7 @@ import { axiosConfig } from '../CalendarPage/CalendarPage';
 
 
 export const RegisterActivies = () => {
+
 const [title, setTitle] = useState('');
 const [description, setDescription] = useState('');
 const [dateStart, setDateStart] = useState('');
@@ -54,8 +55,7 @@ const data1 = {
     alert(data.data.message);
     window.location.href = '/user';
   })
-}
-}else{
+}}else{
   alert('Please enter a valid title');
 }
 };
