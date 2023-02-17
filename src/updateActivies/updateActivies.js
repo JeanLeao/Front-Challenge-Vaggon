@@ -23,15 +23,13 @@ console.log(localStorage.getItem('title'))
     axios.get('http://localhost:3500/activities/'+localStorage.getItem('slug')+'/'+localStorage.getItem('title'),axiosConfig).then((data) => {
       localStorage.setItem('id', data.data.id);
       
-    console.log(data);
+      console.log(data);
     }).catch((error) => {
       console.log(error);
-      console.log('ta parando no 1')
       localStorage.clear();
       window.location.href = '/';
     })
   }else{
-    console.log('ta parando no 2')
     localStorage.clear();
     window.location.href = '/';
   }
